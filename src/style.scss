@@ -1,0 +1,335 @@
+$glass-color: #e3e3e3;
+$glass-rim-color: #EAC606;
+$lemon-color: #fff44f;
+
+
+/* ========================== *\
+   Mixins
+\* ========================== */
+
+@mixin shine($stretch: calc(50% + var(--border))) {
+  &:before {
+    background-image: linear-gradient(
+      to bottom,
+      white,
+      transparent 80%,
+      transparent
+    );
+    content: '';
+    height: 100%;
+    left: calc(var(--border)  * -1);
+    opacity: 0.4;
+    position: absolute;
+    top: var(--border);
+    width: $stretch;
+    z-index: 2;
+  }
+}
+
+
+/* ========================== *\
+   Utilities
+\* ========================== */
+.u-vertical-rhythm > * + * {
+  margin-top: 2rem;
+}
+
+
+
+/* ========================== *\
+   Global Elements
+\* ========================== */
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: 'DM Sans', sans-serif;
+  justify-content: center;
+}
+
+.page__content {
+  width: 100%;
+}
+
+.title {
+  font-family: 'Raleway', sans-serif;
+  font-size: 15vmin;
+  padding: 1rem;
+  opacity: 0.05;
+  position: absolute;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+}
+
+
+
+/* ========================== *\
+   Form elements
+\* ========================== */
+
+.form-item {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 300px;
+}
+
+.form-group {
+  display: flex;
+  
+  > *:not(:last-child) {
+    margin-right: 0.25rem;
+  }
+  
+  > select {
+    flex: 1 0 0;
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+select {
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/menu-down.svg);
+	background-position: right 0.3rem top 50%;
+  background-repeat: no-repeat;
+  border: 1px solid $glass-color;
+  border-radius: 0.125rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.75rem 2rem 0.75rem 0.75rem;
+  width: 100%;
+  -moz-appearance: none;
+	-webkit-appearance: none;
+}
+
+
+
+/* ========================== *\
+   Buttons
+\* ========================== */
+
+.btn {
+  background-color: transparent;
+  border: none;
+  border-radius: 0.125rem;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.75rem 1rem;
+  
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.btn--primary {
+  color: white;
+  background-color: dodgerblue;
+}
+
+
+
+/* ========================== *\
+   Glass
+\* ========================== */
+
+.glass {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  position: relative;
+  width: 25vmin;
+  z-index: 1;
+}
+
+.bowl {
+  --border: 1vmin;
+  
+  @include shine;
+  align-items: center;
+  background-color: rgba($glass-color, 0.75);
+  border: var(--border) solid $glass-color;
+  border-top: 0;
+  border-radius: 1vmin 1vmin 50vmin 50vmin;
+  display: flex;
+  height: 25vmin;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  
+  // Glass rim
+  &:after {
+    background-color: $glass-rim-color;
+    border-radius: 0.25vmin 0.25vmin 0 0;
+    content: '';
+    height: 1vmin;
+    position: absolute;
+    top: 0;
+    width: calc(100% + var(--border) * 2);
+    z-index: -1;
+  }
+}
+
+.stem {
+  @include shine(35%);
+  background-color: $glass-color;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(black, 0.05),
+    transparent 15%,
+    transparent 75%,
+    rgba(black, 0.05)
+  );
+  height: 20vmin;
+  position: relative;
+  margin-top: -1vmin;
+  width: 4vmin;
+  z-index: -1;
+}
+
+.base {
+  @include shine;
+  background-color: $glass-color;
+  border-radius: 0.5vmin;
+  height: 1.5vmin;
+  position: relative;
+  width: 20vmin;
+  z-index: 1;
+}
+
+
+
+/* ========================== *\
+   Ingredients
+\* ========================== */
+
+.ingredient-colors,
+.ingredient-list {
+  --outline: 2vmin;
+  
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column-reverse;
+  height: calc(100% - var(--outline) * 2);
+  margin-top: calc(var(--outline) * 2);
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+.ingredient-colors {
+  opacity: 0.75;
+  overflow: hidden;
+  
+  // Glass bowl bottom shadow
+  &:before {
+    --height: 8vmin;
+    
+    background-image: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(black, 0.4)
+    );
+    border-radius: 100%;
+    bottom: calc(var(--height) / -2);
+    content: '';
+    height: var(--height);
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+  }
+  
+  .ingredient {
+    flex-basis: 100%;
+    position: relative;
+    transform: scaleY(0);
+    transform-origin: 50% 100%;
+
+    &.animate {
+      animation: fill 400ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    }
+  }
+}
+
+.ingredient-list {
+  left: calc(100% + 2rem);
+  position: absolute;
+  top: 0;
+  
+  .ingredient {
+    flex-basis: 100%;
+    font-size: 0.75rem;
+    line-height: 1.15;
+    opacity: 0;
+    position: relative;
+    transform-origin: 50% 100%;
+    transform: translateX(-1rem);
+
+    &:before {
+      background-color: black;
+      border-radius: 50vmin;
+      content: '';
+      height: 2px;
+      right: calc(100% + 0.5rem);
+      position: absolute;
+      top: 0.375rem;
+      width: 2rem;
+    }
+
+    &.animate {
+      animation: ingredient-text 400ms 200ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+    }
+  }
+}
+
+
+
+/* ========================== *\
+   Garnish
+\* ========================== */
+
+.garnish {
+  --size: 12vmin;
+  
+  background-color: $lemon-color;
+  border: 1vmin solid darken($lemon-color, 18%);
+  border-radius: 100%;
+  box-shadow: inset white 0 0 0 0.5vmin;
+  height: var(--size);
+  left: calc(100% - var(--size) / 2);
+  position: absolute;
+  bottom: calc(100% - var(--size) / 2);
+  width: var(--size);
+  z-index: -1;
+}
+
+
+
+/* ========================== *\
+   Animation Keyframes
+\* ========================== */
+
+@keyframes fill {
+  to { transform: scaleY(1.0001); }
+}
+
+@keyframes ingredient-text {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
