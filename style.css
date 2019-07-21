@@ -73,6 +73,7 @@ label {
 [type="radio"] {
   opacity: 0;
   position: absolute;
+  z-index: -1;
 }
 [type="radio"] + label {
   cursor: pointer;
