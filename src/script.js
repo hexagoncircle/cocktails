@@ -1,12 +1,11 @@
-const btnMakeDrink = document.getElementById('make-drink');
-const glass = document.getElementById('glass');
 const drinkTitle = document.getElementById('drink-name');
-const drinkList = document.getElementById('drink-list');
+const drinkSelect = document.querySelectorAll('[name="drink-select"]');
 const ingredientColors = document.getElementById('ingredient-colors');
 const ingredientList = document.getElementById('ingredient-list');
 const drinks = [
   {
     name: 'Negroni',
+    id: 'negroni',
     ingredients: [
       { text: '1 oz Campari', color: '#B8141B' },
       { text: '1 oz Gin', color: '#ADFAF7' },
@@ -17,6 +16,7 @@ const drinks = [
   },
   {
     name: 'Manhattan',
+    id: 'manhattan',
     ingredients: [
       { text: 'Dash Angostura bitters', color: '#620F06' },
       { text: '2 oz Rye or Canadian whisky', color: '#E89230' },
@@ -27,6 +27,7 @@ const drinks = [
   },
   {
     name: 'Old Fashioned',
+    id: 'old-fashioned',
     ingredients: [
       { text: '1 1/2 oz Bourbon or Rye whiskey', color: '#E89230' },
       { text: '2 dashes Angostura bitters', color: '#620F06' },
@@ -38,11 +39,13 @@ const drinks = [
   }
 ]
 
-btnMakeDrink.addEventListener('click', getDrink);
+for (let i = 0; i < drinkSelect.length; i ++) {
+  drinkSelect[i].addEventListener('click', () => getDrink(drinkSelect[i].id)); 
+}
 
-
-function getDrink() {
-  const drink = getIngredients(drinkList.value);
+function getDrink(id) {
+  console.log(id)
+  const drink = getIngredients(id);
   
   ingredientColors.innerHTML = '';
   ingredientList.innerHTML = '';
@@ -58,12 +61,9 @@ function getDrink() {
   animateIngredients(ingredientList);
 }
 
-
-function getIngredients(drink) {
-  return drinks.find(item => item.name === drink);
+function getIngredients(drinkId) {
+  return drinks.find(item => item.id === drinkId);
 }
-
-
 
 function addIngredientColor(ingredient) {
   let node = document.createElement('div');
@@ -75,8 +75,6 @@ function addIngredientColor(ingredient) {
   return node;
 }
 
-
-
 function addIngredientListItem(ingredient) {
   let node = document.createElement('li');
   
@@ -85,8 +83,6 @@ function addIngredientListItem(ingredient) {
   
   return node;
 }
-
-
 
 function animateIngredients(el) {
   const list = el.querySelectorAll('.ingredient');

@@ -1,4 +1,4 @@
-$glass-color: #e3e3e3;
+$glass-color: #e9e9e9;
 $glass-rim-color: #EAC606;
 $lemon-color: #fff44f;
 
@@ -31,7 +31,7 @@ $lemon-color: #fff44f;
    Utilities
 \* ========================== */
 .u-vertical-rhythm > * + * {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 
@@ -60,7 +60,11 @@ body {
   width: 100%;
 }
 
-.title {
+/* ========================== *\
+   Labels
+\* ========================== */
+
+.cocktail__label {
   font-family: 'Raleway', sans-serif;
   font-size: 15vmin;
   padding: 1rem;
@@ -71,27 +75,27 @@ body {
   width: 100%;
 }
 
+.controls__label {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
 
 
 /* ========================== *\
    Form elements
 \* ========================== */
 
-.form-item {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 300px;
+.controls {
+  text-align: center;
 }
 
 .form-group {
   display: flex;
+  justify-content: center;
+  margin-bottom: 4rem;
   
   > *:not(:last-child) {
     margin-right: 0.25rem;
-  }
-  
-  > select {
-    flex: 1 0 0;
   }
 }
 
@@ -100,19 +104,36 @@ label {
   margin-bottom: 0.5rem;
 }
 
-select {
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/menu-down.svg);
-	background-position: right 0.3rem top 50%;
-  background-repeat: no-repeat;
-  border: 1px solid $glass-color;
-  border-radius: 0.125rem;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
-  padding: 0.75rem 2rem 0.75rem 0.75rem;
-  width: 100%;
-  -moz-appearance: none;
-	-webkit-appearance: none;
+[type="radio"] {
+  opacity: 0;
+  
+  + label {
+    cursor: pointer;
+    transition: color 100ms ease-out;
+    
+    &:after {
+      content: '';
+      display: block;
+      height: 2px;
+      margin-top: 0.25rem;
+      width: 100%;
+      background-color: black;
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      transition:
+        background-color 100ms ease-out,
+        transform 100ms ease-out;
+    }
+  }
+  
+  &:checked + label {
+    color: dodgerblue;
+    
+    &:after {
+      background-color: dodgerblue;
+      transform: scaleX(1);
+    }
+  }
 }
 
 
@@ -310,7 +331,7 @@ select {
   border-radius: 100%;
   box-shadow: inset white 0 0 0 0.5vmin;
   height: var(--size);
-  left: calc(100% - var(--size) / 2);
+  right: calc(100% - var(--size) / 2);
   position: absolute;
   bottom: calc(100% - var(--size) / 2);
   width: var(--size);

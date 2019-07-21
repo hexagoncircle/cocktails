@@ -1,18 +1,20 @@
-main.page__content.u-vertical-rhythm
-  h1.title(id="drink-name") Select
-  .glass(id="glass")
-    .garnish
-    .bowl
-      .ingredient-colors(id="ingredient-colors")
-      ul.ingredient-list(id="ingredient-list")
-    .stem
-    .base
-  
-  .form-item
-    label(for="drink-list") Select a drink
+main.page__content
+  section.controls.u-vertical-rhythm(id="controls")
+    h1.controls__label Select a cocktail
     .form-group
-      select(id="drink-list")
-        option(value="Negroni") Negroni
-        option(value="Manhattan") Manhattan
-        option(value="Old Fashioned") Old Fashioned
-      button.btn.btn--primary(id="make-drink") Make it!
+      input(type="radio" name="drink-select" id="negroni")
+      label(for="negroni") Negroni
+      input(type="radio" name="drink-select" id="manhattan")
+      label(for="manhattan") Manhattan
+      input(type="radio" name="drink-select" id="old-fashioned")
+      label(for="old-fashioned") Old Fashioned
+  
+  section.cocktail
+    h2.cocktail__label(id="drink-name")
+    .glass(id="glass")
+      .garnish
+      .bowl
+        .ingredient-colors(id="ingredient-colors")
+        ul.ingredient-list(id="ingredient-list")
+      .stem
+      .base
