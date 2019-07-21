@@ -39,13 +39,13 @@ const drinks = [
   }
 ]
 
+
 for (let i = 0; i < drinkSelect.length; i ++) {
   drinkSelect[i].addEventListener('click', () => getDrink(drinkSelect[i].id)); 
 }
 
 function getDrink(id) {
-  console.log(id)
-  const drink = getIngredients(id);
+  const drink = drinks.find(item => item.id === id);
   
   ingredientColors.innerHTML = '';
   ingredientList.innerHTML = '';
@@ -59,10 +59,6 @@ function getDrink(id) {
   
   animateIngredients(ingredientColors);
   animateIngredients(ingredientList);
-}
-
-function getIngredients(drinkId) {
-  return drinks.find(item => item.id === drinkId);
 }
 
 function addIngredientColor(ingredient) {
