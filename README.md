@@ -1,2 +1,2 @@
-# cocktails
+# Cocktails
 Cocktail maker prototype
