@@ -4,6 +4,8 @@ This goal of this project was to create a quick prototype that is inspired by th
 
 Prototype link: https://hexagoncircle.com/cocktails
 
+**Note:** This prototype was built in Chrome and needs an initial round of [browser testing](https://github.com/hexagoncircle/cocktails/issues/13).
+
 ![Close up of cocktail](assets/cocktail-sm.jpg)
 
 ## How's it work?
