@@ -1,6 +1,6 @@
 # Cocktails
 
-This goal of this project was to create a quick prototype that is inspired by the following photo. Using HTML (Pug), CSS (SCSS), and Javascript, I built what is essentially a cocktail maker. Hey, cheers!
+This goal of this project was to create a quick prototype that is inspired by the following photo. Using HTML (Pug), CSS (SCSS), and Javascript, I built what is essentially a cocktail maker. Hey, cheers! 🍹
 
 Prototype link: https://hexagoncircle.com/cocktails
 
